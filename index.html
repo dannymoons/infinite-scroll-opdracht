@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Infinite Scroll
+		</title>
+		<link rel="stylesheet" href="inc/style.css">
+		<script src="inc/script.js"></script>
+	</head>
+	<body>
+		<div id="infinite-scroll-wrapper">
+		</div>
+		<div id="loading-symbol">
+			<img src="inc/loading_symbol.gif" />
+		</div>
+		<script>
+			setWrapper(wrapperId);
+			loadData(rowNum*colNum);
+			
+			window.addEventListener('scroll', function (event) {
+				if (bottomIsVisible(infinite_scroll_wrapper)) {
+					//loadData(rowNum*colNum);
+					setTimeout(loadData(rowNum*colNum), 500);
+				}
+			});
+		</script>
+	</body>
+</html>
