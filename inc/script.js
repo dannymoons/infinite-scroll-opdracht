@@ -40,17 +40,13 @@ var infinite_scroll_wrapper = document.getElementById(wrapperId);
 
 function loadData(n) {
 	const target = api_url + "?size=" + n;
-	const request = new XMLHttpRequest();
-	request.onload = function () {
-		displayData(this.responseText);
-	};
-	request.open("GET", target, true);
-	request.send();
+	
+	fetch(target)
+		.then(response => response.json())
+		.then(data => displayData(data));
 }
 
-function displayData(rawData) {
-	const dataObject = JSON.parse(rawData);
-	
+function displayData(dataObject) {
 	var htmlOutput = '';
 	
 	for (var rows = 0; rows < rowNum; rows++) {
@@ -70,12 +66,10 @@ function displayData(rawData) {
 		htmlOutput += '</div>';
 	}
 	
-	
 	infinite_scroll_wrapper.innerHTML += htmlOutput;
 }
 
 function bottomIsVisible(pageElement) {
-	//return pageView.height >= pageElement.height;
 	var elementDimensions = pageElement.getBoundingClientRect();
 	var elementBottom = elementDimensions.bottom;
 	return (window.innerHeight >= elementBottom && elementBottom > 0);
