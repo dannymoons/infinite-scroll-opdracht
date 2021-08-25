@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<title>
 		Infinite Scroll
 	</title>
 	<link rel="stylesheet" href="inc/styles.min.css">
-	<script src="inc/script.js"></script>
 </head>
-
 <body>
 	<!-- New HTML part to place the API values in -->
 	<div class="row">
@@ -17,27 +14,24 @@
 			<p class="card__title">Title here</p>
 		</div>
 	</div>
-<!-- END new HTML part -->
+	<!-- END new HTML part -->
 
 	<div id="infinite-scroll-wrapper">
 	</div>
 	<div id="loading-symbol">
 		<img src="inc/loading_symbol.gif" />
 	</div>
+	<script src="inc/script.js"></script>
 	<script>
-		setWrapper(wrapperId);
 		loadData(rowNum*colNum);
 
 		window.addEventListener('scroll', function (event) {
 			if (bottomIsVisible(infinite_scroll_wrapper)) {
-				//loadData(rowNum*colNum);
 				setTimeout(() => {
 					loadData(rowNum*colNum);
-				}, 10000);
+				}, 3000);
 			}
 		}, {passive: true});
 	</script>
-
 </body>
-
 </html>
